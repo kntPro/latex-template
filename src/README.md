@@ -1,0 +1,15 @@
+## 参考文献
+- BiBTeXは、本文中で`\cite{}`引用されてないやつはエラーになる
+- 引用されてないやつもあるなら、`\bibliographystyle{}`の前に`\nocite{*}`
+- https://mathlandscape.com/latex-cite/
+- https://mathlandscape.com/latex-bib/
+- ぐぐりながらやる
+## めも
+- ファイル分割時、重複は不要
+- コンパイルすると、pdflatexで実行されてしまう（たぶん設定の影響）
+  - `devcontainer.json`に追記して修正。recipe書かないといけなさそう
+- 論文表紙テンプレが使えない！
+  - `documentclass`のオプションに`notitlepage`
+- `a4paper`だと指導教員の部分がはみでた
+  - `a4j`にした
+- https://medemanabu.net/latex/

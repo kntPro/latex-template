@@ -1,0 +1,97 @@
+\documentclass[notitlepage, a4j, 12pt]{ujreport}
+
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{listings} % イイ感じのソースコードを書く
+
+\lstset{ % listingsの設定
+  language={C},
+  basicstyle={\small},%
+  identifierstyle={\small},%
+  commentstyle={\small\itshape\color[rgb]{0,0.5,0}},%
+  keywordstyle={\small\bfseries\color[rgb]{0,0,1}},%
+  ndkeywordstyle={\small},%
+  stringstyle={\small\ttfamily\color[rgb]{1,0,1}},
+  frame={tb},
+  breaklines=true,
+  columns=[l]{fullflexible},%
+  numbers=left,%
+  xrightmargin=0zw,%
+  xleftmargin=3zw,%
+  numberstyle={\scriptsize},%
+  stepnumber=1,
+  numbersep=1zw,%
+  lineskip=-0.5ex%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 論文表紙テンプレ はじめ
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makeatletter
+
+\def\@thesis{20XX年度　学 士 論 文}
+\def\id#1{\def\@id{#1}}
+\def\department#1{\def\@department{#1}}
+\def\lab#1{\def\@lab{#1}}
+\def\teacher#1{\def\@teacher{#1}}
+
+\def\@maketitle{
+\begin{center}
+\vspace{10mm}
+{\LARGE \@thesis \par} %修士論文と記載される部分
+\vspace{30mm}
+{\Huge\bf \@title \par}% 論文のタイトル部分
+\vspace{70mm}
+{\Large \@date\par} % 提出年月日部分
+\vspace{15mm}
+{\LARGE \@department \par} % 所属大学
+{\LARGE \@lab \par} %所属研究室
+{\LARGE 学籍番号 : \@id \par} % 学籍番号部分
+\vspace{5mm}
+{\huge \@author \par}% 氏名
+\vspace{10mm}
+{\LARGE 指導教員　\@teacher \par}% 指導教員
+\end{center}
+\par\vskip 1.5em
+\thispagestyle{empty}
+\clearpage
+\addtocounter{page}{-1}
+}
+
+\makeatother
+\title{たいとる}
+\西暦
+\date{20XX年X月X日}
+\department{明治大学理工学情報科学専攻}
+\lab{脳知能学研究室}
+\id{157RXXXXXX}
+\author{じぶんのなまえ}
+\teacher{向井秀夫}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 論文表紙テンプレ　終わり
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\tableofcontents % 目次生成
+
+\include{ch_introduction.tex}
+
+\include{ch_experiment.tex}
+
+\include{ch_result.tex}
+
+\include{thank.tex}
+% \addcontentsline{toc}{chapter}{謝辞} % 謝辞は目次に入れる？
+
+\renewcommand{\bibname}{参考文献}
+\addcontentsline{toc}{chapter}{\bibname}
+\nocite{*} % 引用してないやつを参考文献にいれるのに必要
+\bibliographystyle{jplain} % 参考文献のスタイル　日本語なのでjplain
+\bibliography{reference} % 参考文献ファイルを参照　reference.bib
+
+\end{document}
