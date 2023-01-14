@@ -7,7 +7,31 @@
 		"context": "..",
 		// Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
 		"dockerfile": "Dockerfile"
-	}
+	},
+	"settings": {
+		"latex-workshop.latex.autoBuild.interval": 0,
+		"latex-workshop.latex.autoBuild.run": "onSave",
+		"latex-workshop.latex.autoClean.run": "onBuilt",
+		"latex-workshop.latex.recipes": [// ビルド時に使うレシピ
+			{
+				"name": "latexmk",
+				"tools": [
+					"latexmk"
+				]
+			}
+		],
+		"latex-workshop.latex.tools": [// レシピから参照される？
+			{
+				"name": "latexmk",
+				"command": "latexmk",
+				"args": [
+					"-silent",
+					"%DOC%"
+				],
+				"env": {}
+			}
+		]
+	},
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
@@ -19,7 +43,13 @@
 	// "postCreateCommand": "cat /etc/os-release",
 
 	// Configure tool-specific properties.
-	// "customizations": {},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"James-Yu.latex-workshop"
+			]
+		}
+	}
 
 	// Uncomment to connect as an existing user other than the container default. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "devcontainer"
