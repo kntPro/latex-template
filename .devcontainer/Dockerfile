@@ -21,10 +21,11 @@ RUN apt-get update && \
   apt-get autoclean -y && \
   rm -rf /var/lib/apt/lists/*
 
+# install texlive
+# note: 
 ARG TEXLIVE_URL="http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz"
 ARG TEXLIVE_VERSION="2022"
 
-# install texlive
 WORKDIR /tmp/install-tl-unx
 RUN wget -nv ${TEXLIVE_URL} && \
   tar -zxf ./install-tl-unx.tar.gz --strip-components=1 && \
@@ -51,7 +52,8 @@ RUN tlmgr update --self --all && tlmgr install \
   latexindent
 COPY .latexmkrc /root
 
-#RUN cpanm Log
+# install perl package for latexindent
+RUN cpanm Log::Log4perl
 
 WORKDIR /workdir
 
