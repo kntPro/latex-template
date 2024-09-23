@@ -1,4 +1,5 @@
-FROM ubuntu:22.04
+#!! LTSのバージョンにする（dockerで公開されているバージョンをチェック）!!
+FROM ubuntu:22.04 
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -10,6 +11,8 @@ RUN apt-get update && \
   apt-get install -y --no-install-recommends \
     build-essential \
     cpanminus \
+    openssh-client \
+    socat \
     git \
     curl \
     wget \
@@ -24,7 +27,8 @@ RUN apt-get update && \
 # install texlive
 # note: 
 ARG TEXLIVE_URL="http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz"
-ARG TEXLIVE_VERSION="2022"
+#!!下のバージョンを変更する!!(2025年度→2025)
+ARG TEXLIVE_VERSION="2024" 
 
 WORKDIR /tmp/install-tl-unx
 RUN wget -nv ${TEXLIVE_URL} && \
